@@ -1,11 +1,9 @@
 package webservices;
 
+import entities.Logement;
 import metiers.LogementBusiness;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 @Path("/logement")
@@ -23,6 +21,36 @@ public class LogementRessources {
                 .entity(help.getLogements())
                 .build();
     }
+
+
+    @POST
+    @Path("/add")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response addLogement(Logement logement) {
+        try {
+            help.addLogement(logement);  // Implémentation de l'ajout dans LogementBusiness
+            return Response.status(201).entity("Logement ajouté avec succès").build();
+        } catch (Exception e) {
+            return Response.status(500).entity("Erreur lors de l'ajout du logement").build();
+        }
+    }
+
+    // Supprimer un logement
+    @DELETE
+    @Path("/delete/{reference}")
+    public Response deleteLogement(@PathParam("reference") int reference) {
+        try {
+            boolean result = help.deleteLogement(reference);  // Implémentation de la suppression dans LogementBusiness
+            if (result) {
+                return Response.status(200).entity("Logement supprimé avec succès").build();
+            } else {
+                return Response.status(404).entity("Logement non trouvé").build();
+            }
+        } catch (Exception e) {
+            return Response.status(500).entity("Erreur lors de la suppression du logement").build();
+        }
+    }
+
 
 
 }

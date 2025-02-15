@@ -1,4 +1,6 @@
 const API_URL = "http://localhost:7777/LogementRendezVous_Etudiant_war_exploded/api/logement/getAll";
+const API_URL2 = "http://localhost:7777/LogementRendezVous_Etudiant_war_exploded/api/logement/add/";
+const API_URL3 = "http://localhost:7777/LogementRendezVous_Etudiant_war_exploded/api/logement";
 
 // Charger les logements au démarrage
 document.addEventListener("DOMContentLoaded", fetchLogements);
@@ -43,4 +45,52 @@ function afficherLogements(logements) {
         `;
         tableBody.innerHTML += row;
     });
+}
+
+// Ajouter un logement
+document.getElementById("logement-form").addEventListener("submit", function (event) {
+    event.preventDefault();  // Empêcher la soumission par défaut du formulaire
+    addLogement();  // Appeler la fonction pour ajouter le logement
+});
+
+function addLogement() {
+    const newLogement = {
+        reference: document.getElementById("reference").value,
+        adresse: document.getElementById("adresse").value,
+        ville: document.getElementById("ville").value,
+        type: document.getElementById("type").value,
+        description: document.getElementById("equipements").value,  // Utiliser "equipements" comme description
+        prix: document.getElementById("prix").value
+    };
+
+    fetch(API_URL2, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newLogement)
+    })
+        .then(response => {
+            if (response.ok) {
+                fetchLogements();  // Recharger les logements après ajout
+            } else {
+                console.error("Erreur lors de l'ajout du logement");
+            }
+        })
+        .catch(error => console.error("Erreur lors de l'ajout du logement :", error));
+}
+
+// Supprimer un logement
+function deleteLogement(reference) {
+    fetch(API_URL3 + "/delete/" + reference, {
+        method: "DELETE"
+    })
+        .then(response => {
+            if (response.ok) {
+                fetchLogements();  // Recharger les logements après suppression
+            } else {
+                console.error("Erreur lors de la suppression du logement");
+            }
+        })
+        .catch(error => console.error("Erreur lors de la suppression du logement :", error));
 }
