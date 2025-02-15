@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Logements</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Gestion des Logements</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>Référence</th>
+        <th>Adresse</th>
+        <th>Ville</th>
+        <th>Type</th>
+        <th>Équipements</th>
+        <th>Prix</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody id="logements-table">
+    <!-- Logements seront ajoutés ici dynamiquement -->
+    </tbody>
+</table>
+
+<h2>Ajouter un Logement</h2>
+<form id="logement-form">
+    <input type="number" id="reference" placeholder="Référence" required>
+    <input type="text" id="adresse" placeholder="Adresse" required>
+    <input type="text" id="ville" placeholder="Ville" required>
+    <input type="text" id="type" placeholder="Type" required>
+    <input type="text" id="equipements" placeholder="Équipements" required>
+    <input type="number" id="prix" placeholder="Prix" required>
+    <button type="submit">Ajouter</button>
+</form>
+
+<script src="script.js"></script>
+</body>
+</html>

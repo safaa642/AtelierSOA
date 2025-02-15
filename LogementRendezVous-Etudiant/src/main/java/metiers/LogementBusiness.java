@@ -22,6 +22,7 @@ public class LogementBusiness {
     }
 
 
+
     public Logement getLogementsByReference(int reference){
 
         for (Logement l:logements){

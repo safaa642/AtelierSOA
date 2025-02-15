@@ -15,10 +15,13 @@ public class LogementRessources {
     @Path("/getAll")
     @Produces(MediaType.APPLICATION_JSON)
     public Response  getAll(){
-        return Response.
-                status(200).
-                entity(help.getLogements()).
-                build();
+        return Response
+                .status(200)
+                .header("Access-Control-Allow-Origin", "*")  // Permet toutes les origines
+                .header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")  // Permet les méthodes spécifiques
+                .header("Access-Control-Allow-Headers", "Content-Type, Authorization")  // Permet des en-têtes spécifiques
+                .entity(help.getLogements())
+                .build();
     }
 
 
