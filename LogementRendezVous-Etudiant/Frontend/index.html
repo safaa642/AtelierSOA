@@ -8,35 +8,38 @@
 </head>
 <body>
 
-<h1>Gestion des Logements</h1>
+<h1>🏡 Gestion des Logements</h1>
 
-<table>
-    <thead>
-    <tr>
-        <th>Référence</th>
-        <th>Adresse</th>
-        <th>Ville</th>
-        <th>Type</th>
-        <th>Équipements</th>
-        <th>Prix</th>
-        <th>Actions</th>
-    </tr>
-    </thead>
-    <tbody id="logements-table">
-    <!-- Logements seront ajoutés ici dynamiquement -->
-    </tbody>
-</table>
+<section id="logements-container">
+    <!-- Logements affichés ici dynamiquement -->
+</section>
 
-<h2>Ajouter un Logement</h2>
+<h2>➕ Ajouter un Logement</h2>
 <form id="logement-form">
     <input type="number" id="reference" placeholder="Référence" required>
     <input type="text" id="adresse" placeholder="Adresse" required>
-    <input type="text" id="ville" placeholder="Ville" required>
-    <input type="text" id="type" placeholder="Type" required>
-    <input type="text" id="equipements" placeholder="Équipements" required>
-    <input type="number" id="prix" placeholder="Prix" required>
+    <input type="text" id="delegation" placeholder="Ville" required>
+    <input type="text" id="gouvernorat" placeholder="Type" required>
+    <input type="text" id="type" placeholder="Équipements" required>
+    <input type="text" id="description" placeholder="Description" required>
+    <input type="number" id="Prix" placeholder="Prix" required>
     <button type="submit">Ajouter</button>
 </form>
+
+<div id="update-modal" style="display:none;">
+    <h2>Mettre à jour le Logement</h2>
+    <form id="update-form">
+        <input type="number" id="update-reference" placeholder="Référence" required disabled>
+        <input type="text" id="update-adresse" placeholder="Adresse" required>
+        <input type="text" id="update-delegation" placeholder="Ville" required>
+        <input type="text" id="update-gouvernorat" placeholder="Type" required>
+        <input type="text" id="update-type" placeholder="Équipements" required>
+        <input type="text" id="update-description" placeholder="Description" required>
+        <input type="number" id="update-prix" placeholder="Prix" required>
+        <button type="submit">Mettre à jour</button>
+        <button type="button" onclick="closeUpdateModal()">Fermer</button>
+    </form>
+</div>
 
 <script src="script.js"></script>
 </body>
